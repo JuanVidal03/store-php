@@ -55,7 +55,7 @@ p{font-size: 1rem;}
 /* footer styles */
 .footer{
     width: 100%;
-    background-color: #345344;
+    background-color: #00ff75;
     padding: .5rem 0;
     display: flex;
     align-items: center;
@@ -64,13 +64,13 @@ p{font-size: 1rem;}
 
 .link{
     text-decoration: none;
-    color: #ffff;
+    color: #1a1a1a;
     font-weight: 700;
     font-size: 1.2rem;
 }
 
 .footer p{
-    color: #ffff;
+    color: #1a1a1a;
     font-size: 1.2rem;
 }
 
@@ -177,6 +177,7 @@ p{font-size: 1rem;}
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding-bottom: 5rem;
 }
 
 .products-container{
@@ -189,21 +190,25 @@ p{font-size: 1rem;}
 
 .card-product-container {
     max-width: 250px;
-    max-height: 400px;
+    max-height: 550px;
     background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
     border-radius: 20px;
     box-shadow: 0px 0px 10px 5px #00ff75;
     transition: all .3s;
-    cursor: pointer;
 }
 
 .product-content-container {
     max-width: 250px;
-    max-height: 400px;
-    padding: 1rem;
+    max-height: 550px;
     background-color: #1a1a1a;
     border-radius: 20px;
     transition: all .2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 1rem;
+    overflow: hidden;
+    cursor: auto;
 }
 
 .product-content-container:hover {
@@ -217,4 +222,62 @@ p{font-size: 1rem;}
 
 .product-title, .product-text{
     color: #ffff;
+}
+
+.product-image-container{
+    cursor: pointer;
+}
+
+.product-img{
+    width: 100%;
+    filter: grayscale(100%);
+    transition: all ease .5s;
+}
+
+.product-content-container:hover .product-img{
+    filter: grayscale(0);
+}
+
+
+.product-text-container{
+    padding: 1rem;
+}
+
+
+
+
+/* btn product */
+.btn-product {
+    background-color: transparent;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #ffff;
+    padding: .5rem 1rem;
+    margin-top: 1rem;
+    font-weight: 700;
+    position: relative;
+    border: 1px solid #00ff75;
+    z-index: 1;
+    overflow: hidden;
+    transition: all ease-in-out .3s;
+}
+
+.btn-product::after{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    left: 0;
+    background-color: #00ff75;
+    transition: all ease-in-out .3s;
+    z-index: -1;
+}
+
+.btn-product:hover::after{
+    top: 0%;
+}
+
+.btn-product:hover{
+    color: #1a1a1a;
 }

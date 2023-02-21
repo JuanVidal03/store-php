@@ -17,7 +17,7 @@
                 
                 <div class="product-content-container">
                     <div class="product-image-container">
-                        <img src="" alt="Image">
+                        <img class="product-img" src="./img/product.jpg" alt="Image">
                     </div>
                     <div class="product-text-container">
                         <h5 class="product-title">Producto 1</h5>
@@ -32,7 +32,7 @@
                 
                 <div class="product-content-container">
                     <div class="product-image-container">
-                        <img src="" alt="Image">
+                        <img class="product-img" src="./img/product.jpg" alt="Image">
                     </div>
                     <div class="product-text-container">
                         <h5 class="product-title">Producto 2</h5>
@@ -47,7 +47,7 @@
                 
                 <div class="product-content-container">
                     <div class="product-image-container">
-                        <img src="" alt="Image">
+                        <img class="product-img" src="./img/product.jpg" alt="Image">
                     </div>
                     <div class="product-text-container">
                         <h5 class="product-title">Producto 3</h5>
@@ -62,7 +62,7 @@
                 
                 <div class="product-content-container">
                     <div class="product-image-container">
-                        <img src="" alt="Image">
+                        <img class="product-img" src="./img/product.jpg" alt="Image">
                     </div>
                     <div class="product-text-container">
                         <h5 class="product-title">Producto 4</h5>
