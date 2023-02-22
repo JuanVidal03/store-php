@@ -1,3 +1,13 @@
+<?php 
+    // verificando si hay un envio post
+    if ($_POST) {
+        // redirección a otra página en esta caso a 'home.php'
+        header('Location:home.php');
+    }
+
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,10 +26,10 @@
             <h5>Ingresa!</h5>
             <p>Ingresa tus credenciales</p>
             
-            <form class="login-form" action="">
+            <form class="login-form" action="./index.php" method="post">
                 <input type="text" name="user"  placeholder="Usuario">
                 <input type="password" name="pass"  placeholder="Contraseña">
-                <input class="login-submit" type="submit" value="Ingresar">
+                <button class="login-submit" type="submit">ingresar</button>
             </form>
 
         </div>
