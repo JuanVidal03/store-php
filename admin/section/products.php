@@ -28,16 +28,66 @@
 
 
     <!-- CRUD DE PRODUCTOS -->
+    <?php 
+    // VALIDAR INFORMACIÓN
+    // isset es para verificar que la info tenga algo
+    // con files verificamos si hay algun archivo y con post si es diferente a un archivo
+    $txtID = (isset($_POST['txtId'])) ? $_POST['txtId'] : '';
+    $txtName = (isset($_POST['txtName'])) ? $_POST['txtName'] : '';
+    $txtDescription = (isset($_POST['txtDescription'])) ? $_POST['txtDescription'] : '';
+    $txtImg = (isset($_FILES['txtImg']['name'])) ? $_FILES['txtImg']['name'] : '';
 
+    $action = (isset($_POST['action'])) ? $_POST['action'] : '';
+
+
+    // incluyendo la configuración de la DB config/db.php
+    include("../config/db.php");
+
+
+    // evaluando acciones de los botones
+    switch ($action) {
+        case 'add':
+            // agregar productos a la base de datos
+            // instrucción sacada de phpMyAdmin, la palabra reservada prepare(), hace refenrencia a preparar, sería entonces: 'prepara esta sentencia sql'
+            $sentenciaSQL = $conexion -> prepare("INSERT INTO productos (name, description, image) VALUES (:name, :description, :image);");
+
+            // insertando la información con los valores que el usuario ingresa
+            $sentenciaSQL -> bindParam(':name', $txtName); 
+            $sentenciaSQL -> bindParam(':description', $txtDescription);
+            $sentenciaSQL -> bindParam(':image', $txtImg);
+
+            // con esto se ejecuta la instrucción de la linea 52
+            $sentenciaSQL-> execute(); 
+
+            break;
+
+        case 'update':
+            echo 'Presionado btn modificar';
+            break;
+        
+        case 'cancel':
+            echo 'presionado btn cancelar';
+            break;
+    }
+
+
+    /*============================
+    MIN 1:46:40
+    =============================== */
+    
+    ?>
+
+    <!-- estrucra para agregar productos -->
     <div class="crud-container">
 
         <div class="form-add-products-container">
             <form class="form-add-products" action="" method="post" enctype="multipart/form-data">
-
-                <div class="input-container">
+    
+                <!-- <div class="input-container">
                     <label for=txtId">ID Producto:</label>
                     <input type="text" id="txtId" name="txtId" placeholder="Ingresa ID del producto">
-                </div>
+                </div> -->
+
                 <div class="input-container">
                     <label for=txtName">Nombre Producto:</label>
                     <input type="text" id="txtName" name="txtName" placeholder="Ingresa el nombre del producto">
@@ -52,9 +102,9 @@
                 </div>
 
                 <div class="btn-container">
-                    <button class="btn-form-product green" type="button">Agregar</button>
-                    <button class="btn-form-product yellow" type="button">Modificar</button>
-                    <button class="btn-form-product red" type="button">Cancelar</button>
+                    <button class="btn-form-product green" value="add" name="action" type="submit">Agregar</button>
+                    <button class="btn-form-product yellow" value="update" name="action" type="submit">Modificar</button>
+                    <button class="btn-form-product red" value="cancel" name="action" type="submit">Cancelar</button>
                 </div>
 
             </form>
