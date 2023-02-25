@@ -522,3 +522,29 @@ p{font-size: 1rem;}
 .table-body-products{
     text-align: center;
 }
+
+
+/* btn styles products admin */
+.btn-select-delete{
+    padding: 0.5rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.delete-btn{
+    background-color: rgb(189, 43, 43);
+}
+
+.select-btn{
+    background-color: #345344;
+}
+
+.select-delete-products-delete{
+    width: 100%;
+    display: flex;
+    gap: .5rem;
+}

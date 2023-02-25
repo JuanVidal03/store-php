@@ -46,7 +46,7 @@
 
     // evaluando acciones de los botones
     switch ($action) {
-        case 'add':
+        case "add":
             // agregar productos a la base de datos
             // instrucción sacada de phpMyAdmin, la palabra reservada prepare(), hace refenrencia a preparar, sería entonces: 'prepara esta sentencia sql'
             $sentenciaSQL = $conexion -> prepare("INSERT INTO productos (name, description, image) VALUES (:name, :description, :image);");
@@ -61,20 +61,35 @@
 
             break;
 
-        case 'update':
+        case "update":
             echo 'Presionado btn modificar';
             break;
         
-        case 'cancel':
+        case "cancel":
             echo 'presionado btn cancelar';
+            break;
+
+        case "select":
+            echo 'presionado btn seleccionar';
+            break;
+
+        case "delete":
+
+            // ELIMINANDO INFORMACIÓN DE LA DB
+            $sentenciaSQL = $conexion -> prepare("DELETE FROM productos WHERE id=:id");
+            $sentenciaSQL -> bindParam(':id', $txtID);
+            $sentenciaSQL -> execute(); // ejecuta la instrucción
+
             break;
     }
 
-
-    /*============================
-    MIN 1:46:40
-    =============================== */
     
+    // OBTENIENDO Y MOSTRANDO INFORMACIÓN DE LA DB
+    $sentenciaSQL = $conexion -> prepare("SELECT * FROM productos");
+    $sentenciaSQL -> execute(); // ejecuta la instrucción
+
+    $listaProductos = $sentenciaSQL -> fetchAll(PDO::FETCH_ASSOC); // recupera los registros para guardarlos en la variable
+
     ?>
 
     <!-- estrucra para agregar productos -->
@@ -124,11 +139,27 @@
                 </thead>
 
                 <tbody class="table-body-products">
-                    <td>2</td>
-                    <td>Camisa</td>
-                    <td>Lorem ipsum dolor sit amet.</td>
-                    <td>imgae.png</td>
-                    <td>Seleccionar | Borrar</td>
+
+                    <!-- recorriendo todos los productos y mostrandolos-->
+                    <?php foreach($listaProductos as $product) {?>
+                        <tr>
+                            <td><?php echo $product['id'];?></td>
+                            <td><?php echo $product['name'];?></td>
+                            <td><?php echo $product['description'];?></td>
+                            <td><?php echo $product['image'];?></td>
+
+                            <td>
+                                Seleccionar | Borrar
+                                <form class="select-delete-products-delete" method="post">
+                                    <input type="hidden" name="txtId" id="txtId" value="<?php echo $product['id'];?>">
+
+                                    <button class="btn-select-delete select-btn" value="select" name="action" type="submit">Seleccionar</button>
+                                    <button class="btn-select-delete delete-btn" value="delete" name="action" type="submit">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php }?>
+
                 </tbody>
             </table>
 
